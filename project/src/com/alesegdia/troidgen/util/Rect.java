@@ -5,7 +5,7 @@ public class Rect {
 	public Vec2 position = new Vec2(0,0);
 	public Vec2 size = new Vec2(0,0);
 	
-	public Rect (int x, int y, int w, int h) {
+	public Rect (float x, float y, float w, float h) {
 		this.position.Set(x,y);
 		this.size.Set(w,h);
 	}
@@ -19,7 +19,7 @@ public class Rect {
 	public String toString() {
 		return "[" + position.x + "," + position.y + " - " + size.x + "," + size.y + "]";
 	}
-
+	
 	public boolean collideWith( Rect other )
 	{
 		float ax1, ay1, ax2, ay2, bx1, by1, bx2, by2;
