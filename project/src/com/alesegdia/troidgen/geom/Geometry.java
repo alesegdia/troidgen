@@ -5,11 +5,10 @@ import java.util.List;
 
 import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.util.Rect;
-import com.alesegdia.troidgen.util.Vec2;
 
 public class Geometry {
 
-	public List<Link> links;
+	private List<Link> links;
 	public Rect rect;
 	public RestrictionSet restrictionSet;
 	
@@ -19,6 +18,36 @@ public class Geometry {
 		links = new LinkedList<Link>();
 	}
 	
+	public void addLink( Link l )
+	{
+		links.add(l);
+	}
+
+	public List<Link> linksFacing( Direction dir )
+	{
+		List<Link> retlinks = new LinkedList<Link>();
+		for( Link l : links )
+		{
+			if( l.direction == dir )
+			{
+				retlinks.add(l);
+			}
+		}
+		return retlinks;
+	}
+	
+	public boolean hasLinkFacing( Direction dir )
+	{
+		for( Link l : links )
+		{
+			if( l.direction == dir )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public Geometry clone()
 	{
