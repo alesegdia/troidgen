@@ -48,6 +48,12 @@ public class OverlapSolver {
 				// if there was overlap, displace
 				if( thisOverlap )
 				{
+					float sepPar = osc.separationParameter;
+					if( osc.enableTweakNearSeparation )
+					{
+						sepPar = osc.separationParameter * (r1.size.x + r1.size.y);
+					}
+					
 					if( push.x != 0 || push.y != 0 )
 					{
 						if( osc.enableRandomDisplacement )
@@ -55,12 +61,17 @@ public class OverlapSolver {
 							push.x += RNG.rng.nextFloat() / 5;
 							push.y += RNG.rng.nextFloat() / 5;
 						}
-						repulse(r1, push, osc.separationParameter);
+						repulse(r1, push, sepPar);
 					}
 					else if( osc.enableRandomPushIfZero )
 					{
-						repulse(r1, new Vec2(nonZeroRnd(-1, 1), nonZeroRnd(-1, 1)), osc.separationParameter);
+						repulse(r1, new Vec2(nonZeroRnd(-1, 1), nonZeroRnd(-1, 1)), sepPar );
 					}
+					
+					if( r1.position.x < osc.enclosingLeft() ) r1.position.x = -400;
+					if( r1.position.x > osc.enclosingRight() ) r1.position.x = 400;
+					if( r1.position.y < osc.enclosingTop() ) r1.position.y = -400;
+					if( r1.position.y > osc.enclosingBottom()) r1.position.y = 400;
 					// bad, ugly forms
 					//break;
 				}
