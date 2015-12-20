@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.alesegdia.troidgen.overlapsolver.OverlapSolver;
-import com.alesegdia.troidgen.overlapsolver.RectDebugger;
+import com.alesegdia.troidgen.overlapsolver.OverlapSolverConfig;
+import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
 
@@ -21,8 +22,9 @@ public class Test_ControlledOverlapSolver {
 		rects.add(new Rect(3, 2, 3, 3));
 		rects.add(new Rect(-1, 2, 2, 2));
 		OverlapSolver os = new OverlapSolver();
+		OverlapSolverConfig osc = new OverlapSolverConfig();
 		new RectDebugger(rects, 400, 400).Show();
-		os.solve(rects);
+		rects = os.solve(rects, osc);
 		new RectDebugger(rects, 400, 400).Show();
 	}
 	
