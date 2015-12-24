@@ -9,7 +9,7 @@ import com.alesegdia.troidgen.util.Vec2;
 
 public class Room extends Rect {
 
-	private List<Link> links;
+	private List<Link> links = new LinkedList<Link>();
 	public RestrictionSet restrictionSet;
 	public List<Room> neighboors = new LinkedList<Room>();
 	
@@ -17,19 +17,45 @@ public class Room extends Rect {
 		super( 0, 0, width, height );
 		restrictionSet = rs;
 		computeLinks();
-		links = new LinkedList<Link>();
 	}
 	
 	public Room(Room r) {
 		super( r.position.x, r.position.y, r.size.x, r.size.y );
+		computeLinks();
 	}
 
 	public Room(float f, float g, float h, float i) {
 		super(f, g, h, i);
+		computeLinks();
 	}
 
 	private void computeLinks() {
-
+		for( int x = 0; x < this.size.x; x++ )
+		{
+			for( int y = 0; y < this.size.y; y++ )
+			{
+				if( y == 0 )
+				{
+					this.links.add(new Link(x, y, Direction.TOP, this));
+				}
+				
+				if( y == this.size.y -1 )
+				{
+					this.links.add(new Link(x, y, Direction.DOWN, this));
+				}
+				
+				if( x == 0 )
+				{
+					this.links.add(new Link(x, y, Direction.LEFT, this));
+				}
+				
+				if( x == this.size.x -1 )
+				{
+					this.links.add(new Link(x, y, Direction.RIGHT, this));
+				}
+				
+			}
+		}
 	}
 
 	public void addLink( Link l )
