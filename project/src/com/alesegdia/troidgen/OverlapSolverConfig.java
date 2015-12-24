@@ -1,4 +1,4 @@
-package com.alesegdia.troidgen.overlapsolver;
+package com.alesegdia.troidgen;
 
 import com.alesegdia.troidgen.util.Rect;
 
