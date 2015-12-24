@@ -9,7 +9,7 @@ import com.alesegdia.troidgen.util.Vec2;
 
 public class Room extends Rect {
 
-	private List<Link> links = new LinkedList<Link>();
+	public List<Link> links = new LinkedList<Link>();
 	public RestrictionSet restrictionSet;
 	public List<Room> neighboors = new LinkedList<Room>();
 	
