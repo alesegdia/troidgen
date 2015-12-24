@@ -3,22 +3,20 @@ package com.alesegdia.troidgen;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
 import com.alesegdia.troidgen.util.RectUtils;
 
 public class LayoutBuilder {
 
-	public List<Rect> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider )
+	public List<Rect> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupEvaluator rge )
 	{
 		RNG.rng = new RNG();
 		OverlapSolver os = new OverlapSolver();
-		
-		
+
 		List<Rect> outputLayout = new LinkedList<Rect>();
 
-		while( outputLayout.size() < lbc.minimumRooms )
+		while( !rge.evaluate(outputLayout) )
 		{
 			//System.out.println(i);
 			List<Rect> testRects = geometryProvider.provideRandomList( lbc.numRooms );

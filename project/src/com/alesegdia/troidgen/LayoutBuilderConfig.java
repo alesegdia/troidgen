@@ -8,6 +8,5 @@ public class LayoutBuilderConfig {
 	public int numIterations = 5;
 	public Rect spawnRect = new Rect(-4, -4, 8, 8);
 	public OverlapSolverConfig osc = new OverlapSolverConfig();
-	public int minimumRooms = 30;
 	
 }
