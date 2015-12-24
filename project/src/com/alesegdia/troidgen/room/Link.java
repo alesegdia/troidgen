@@ -54,7 +54,7 @@ public class Link {
 	}
 
 	public boolean isConnected() {
-		return connectedRoom == null && connectedLink == null;
+		return connectedRoom != null && connectedLink != null;
 	}
 
 	public boolean canConnect(Link l) {
