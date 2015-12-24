@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import com.alesegdia.troidgen.room.Link;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.Rect;
 import com.alesegdia.troidgen.util.Vec2;
@@ -54,6 +55,41 @@ public class RectDebugger extends JComponent {
 			g.fillRect(x1, y1, x2, y2);
 			g.setColor(Color.MAGENTA);
 			g.fillRect(x1 + s2, y1 + s2, x2 - 2*s2, y2 - 2*s2);
+			
+			for( Link l : r.links )
+			{
+				int xrel = (int) (((r.position.x + l.relCoord.x) * scale + center.x) - scale/2);
+				int yrel = (int) (((r.position.y + l.relCoord.y) * scale + center.y) - scale/2);
+				
+				float mid = scale / 2;
+				
+				if( l.isConnected() )
+				{
+					g.setColor(Color.GREEN);
+				}
+				else
+				{
+					g.setColor(Color.pink);
+				}
+
+				switch( l.direction )
+				{
+				case TOP:
+					g.fillRect((int) (xrel + mid - 2), y1, 4, 4);
+					break;
+				case DOWN:
+					g.fillRect((int) (xrel + mid - 2), y1 + y2 - 4, 4, 4);
+					break;
+				case LEFT:
+					g.fillRect(x1, (int) (yrel + mid - 2), 4, 4);
+					break;
+				case RIGHT:
+					g.fillRect(x1 + x2 - 4, (int) (yrel + mid - 2), 4, 4);
+					break;
+				case NODIR:
+					break;
+				}
+			}
 		}
 	}
 
