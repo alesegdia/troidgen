@@ -1,34 +1,25 @@
 package com.alesegdia.troidgen.test;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import com.alesegdia.troidgen.IGeometryProvider;
+import com.alesegdia.troidgen.GroupExtractor;
+import com.alesegdia.troidgen.IRoomProvider;
 import com.alesegdia.troidgen.OverlapSolver;
 import com.alesegdia.troidgen.OverlapSolverConfig;
-import com.alesegdia.troidgen.RandomGeometryProvider;
+import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
-import com.alesegdia.troidgen.util.Vec2;
+import com.alesegdia.troidgen.util.RectUtils;
 
 public class Test_OverlapSolverRandomProvider {
 	public static void main( String[] args )
 	{
 		RNG.rng = new RNG();
-		IGeometryProvider geoProv = new RandomGeometryProvider( 1, 4 );
+		IRoomProvider geoProv = new RandomRoomProvider( 1, 4 );
 
-		List<Rect> rects = new LinkedList<Rect>();
-		for( int i = 0; i < 20; i++ )
-		{
-			int x = RNG.rng.nextInt(-4, 4);
-			int y = RNG.rng.nextInt(-4, 4);
-			
-			Vec2 size = geoProv.pickRandomSize();
-			int w = (int) size.x;
-			int h = (int) size.y;
-			rects.add(new Rect(x, y, w, h));
-		}
+		List<Rect> rects = geoProv.provideRandomList(20);
+		RectUtils.RandomPlaceInRange(rects, new Rect(-4, -4, 8, 8));
 		
 		OverlapSolver os = new OverlapSolver();
 		OverlapSolverConfig osc = new OverlapSolverConfig();
@@ -38,6 +29,24 @@ public class Test_OverlapSolverRandomProvider {
 		new RectDebugger(rects, 800, 600).Show();
 		rects = os.solve(osc, rects);
 		new RectDebugger(rects, 800, 600).Show();
+
+		GroupExtractor ge = new GroupExtractor();
+		List<List<Rect>> groups = ge.solve(rects);
+
+		List<Rect> best = groups.get(0);
+		for( List<Rect> group : groups )
+		{
+			if( group.size() > best.size() )
+			{
+				best = group;
+			}
+			System.out.println("size: " + group.size());
+			System.out.println("data: " + group);
+			System.out.println("========================");
+		}
+
+		new RectDebugger( best, 800, 600 ).Show();
+		
 
 	}
 	
