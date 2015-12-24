@@ -14,12 +14,13 @@ public class LayoutBuilder {
 	{
 		RNG.rng = new RNG();
 		OverlapSolver os = new OverlapSolver();
-
+		
+		
 		List<Rect> outputLayout = new LinkedList<Rect>();
 
-		for( int i = 0; i < lbc.numIterations; i++ )
+		while( outputLayout.size() < lbc.minimumRooms )
 		{
-			System.out.println(i);
+			//System.out.println(i);
 			List<Rect> testRects = geometryProvider.provideRandomList( lbc.numRooms );
 			RectUtils.RandomPlaceInRange(testRects, lbc.spawnRect);
 			testRects.addAll(outputLayout);
