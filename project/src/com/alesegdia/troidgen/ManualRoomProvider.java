@@ -56,7 +56,7 @@ public class ManualRoomProvider implements IRoomProvider {
 	}
 
 	@Override
-	public List<Rect> provideRandomList(int i) {
+	public List<Room> provideRandomList(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

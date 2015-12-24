@@ -24,8 +24,8 @@ public class RandomRoomProvider implements IRoomProvider {
 	}
 
 	@Override
-	public List<Rect> provideRandomList(int numRooms) {
-		List<Rect> rects = new LinkedList<Rect>();
+	public List<Room> provideRandomList(int numRooms) {
+		List<Room> rects = new LinkedList<Room>();
 		for( int i = 0; i < numRooms; i++ )
 		{
 			rects.add(createRandomRoom());

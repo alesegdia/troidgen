@@ -8,9 +8,10 @@ import com.alesegdia.troidgen.OverlapSolver;
 import com.alesegdia.troidgen.OverlapSolverConfig;
 import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
+import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
-import com.alesegdia.troidgen.util.RectUtils;
+import com.alesegdia.troidgen.util.MiscRoomUtils;
 
 public class Test_OverlapSolverRandomProvider {
 	public static void main( String[] args )
@@ -18,8 +19,8 @@ public class Test_OverlapSolverRandomProvider {
 		RNG.rng = new RNG();
 		IRoomProvider geoProv = new RandomRoomProvider( 1, 4 );
 
-		List<Rect> rects = geoProv.provideRandomList(20);
-		RectUtils.RandomPlaceInRange(rects, new Rect(-4, -4, 8, 8));
+		List<Room> rects = geoProv.provideRandomList(20);
+		MiscRoomUtils.RandomPlaceInRange(rects, new Room(-4, -4, 8, 8));
 		
 		OverlapSolver os = new OverlapSolver();
 		OverlapSolverConfig osc = new OverlapSolverConfig();
@@ -31,10 +32,10 @@ public class Test_OverlapSolverRandomProvider {
 		new RectDebugger(rects, 800, 600).Show();
 
 		GroupExtractor ge = new GroupExtractor();
-		List<List<Rect>> groups = ge.solve(rects);
+		List<List<Room>> groups = ge.solve(rects);
 
-		List<Rect> best = groups.get(0);
-		for( List<Rect> group : groups )
+		List<Room> best = groups.get(0);
+		for( List<Room> group : groups )
 		{
 			if( group.size() > best.size() )
 			{

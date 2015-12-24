@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.Rect;
 import com.alesegdia.troidgen.util.Vec2;
 
@@ -21,16 +22,16 @@ public class RectDebugger extends JComponent {
 
 	private Dimension dimension;
 	private int scale = 14;
-	private List<Rect> rects = new LinkedList<Rect>();
+	private List<Room> rects = new LinkedList<Room>();
 	private Vec2 center;
 	
-	public RectDebugger(List<Rect> rects, int width, int height)
+	public RectDebugger(List<Room> rects, int width, int height)
 	{
 		this.dimension = new Dimension(width, height);
 		this.center = new Vec2(width/2, height/2);
-		for( Rect r : rects )
+		for( Room r : rects )
 		{
-			this.rects.add(new Rect(r));
+			this.rects.add(new Room(r));
 		}
 	}
 	
@@ -42,7 +43,7 @@ public class RectDebugger extends JComponent {
 	}
 
 	private void renderRects(Graphics g) {
-		for( Rect r : rects )
+		for( Room r : rects )
 		{
 			int s2 = scale/4;
 			int x1 = (int) ((r.position.x) * scale + center.x) - scale/2;

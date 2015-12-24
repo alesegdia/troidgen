@@ -5,9 +5,8 @@ import java.util.List;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.Rect;
 
-public interface IRoomProvider {
+public interface IRoomGroupValidator {
 
-	public Room createRandomRoom();
-	public List<Room> provideRandomList(int i);
+	public boolean validate( List<Room> outputLayout );
 	
 }

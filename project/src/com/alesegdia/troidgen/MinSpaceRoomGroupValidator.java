@@ -3,18 +3,19 @@ package com.alesegdia.troidgen;
 import java.util.List;
 
 import com.alesegdia.troidgen.util.Rect;
+import com.alesegdia.troidgen.room.Room;
 
-public class MinSpaceRoomGroupEvaluator implements IRoomGroupEvaluator {
+public class MinSpaceRoomGroupValidator implements IRoomGroupValidator {
 
 	private float min;
 
-	public MinSpaceRoomGroupEvaluator( float min )
+	public MinSpaceRoomGroupValidator( float min )
 	{
 		this.min = min;
 	}
 	
 	@Override
-	public boolean evaluate(List<Rect> group) {
+	public boolean validate(List<Room> group) {
 		float f = 0;
 		for( Rect r : group )
 		{

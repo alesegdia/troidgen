@@ -5,23 +5,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.alesegdia.troidgen.renderer.RectDebugger;
+import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
 import com.alesegdia.troidgen.util.Vec2;
 
 public class OverlapSolver {
 
-	public List<Rect> solve( OverlapSolverConfig osc, List<Rect> prects )
+	public List<Room> solve( OverlapSolverConfig osc, List<Room> prects )
 	{
 		return solve( osc, prects, null );
 	}
 	
-	public List<Rect> solve( OverlapSolverConfig osc, List<Rect> prects, List<Rect> fixedRects )
+	public List<Room> solve( OverlapSolverConfig osc, List<Room> testRects, List<Room> outputLayout )
 	{
-		List<Rect> rects = new LinkedList<Rect>();
-		for( Rect r : prects )
+		List<Room> rects = new LinkedList<Room>();
+		for( Room r : testRects )
 		{
-			rects.add(new Rect(
+			rects.add(new Room(
 					r.position.x 	* osc.resolution,
 					r.position.y 	* osc.resolution,
 					r.size.x 		* osc.resolution,
@@ -31,16 +32,16 @@ public class OverlapSolver {
 		while( overlap )
 		{
 			overlap = false;
-			for( Rect r1 : rects )
+			for( Room r1 : rects )
 			{
-				if( fixedRects == null || !fixedRects.contains(r1) )
+				if( outputLayout == null || !outputLayout.contains(r1) )
 				{
 					Vec2 push = new Vec2(0,0);
 
 					boolean thisOverlap = false;
 					
 					// compute possible push vector
-					for( Rect r2 : rects )
+					for( Room r2 : rects )
 					{
 						if( r1 != r2 && r1.collideWith(r2) )
 						{

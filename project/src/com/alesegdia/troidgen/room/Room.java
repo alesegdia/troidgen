@@ -11,7 +11,7 @@ public class Room extends Rect {
 
 	private List<Link> links;
 	public RestrictionSet restrictionSet;
-	public Room parent = null;
+	public List<Room> neighboors = new LinkedList<Room>();
 	
 	public Room( float width, float height, RestrictionSet rs ) {
 		super( 0, 0, width, height );
@@ -20,6 +20,14 @@ public class Room extends Rect {
 		links = new LinkedList<Link>();
 	}
 	
+	public Room(Room r) {
+		super( r.position.x, r.position.y, r.size.x, r.size.y );
+	}
+
+	public Room(float f, float g, float h, float i) {
+		super(f, g, h, i);
+	}
+
 	private void computeLinks() {
 
 	}
@@ -105,6 +113,21 @@ public class Room extends Rect {
 	{
 		List<Room> visited = new LinkedList<Room>();
 		return connectsWith_(other, visited);
+	}
+	
+	@Override
+	public String toString()
+	{
+		String s = "\n<" + neighboors.size() + "-";
+		
+		for( Room r : neighboors )
+		{
+			s += r.position + ",";
+		}
+		
+		s += ">\n";
+		
+		return s;		
 	}
 
 }

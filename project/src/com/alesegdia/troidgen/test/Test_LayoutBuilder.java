@@ -2,13 +2,16 @@ package com.alesegdia.troidgen.test;
 
 import java.util.List;
 
+import com.alesegdia.troidgen.GraphBuilder;
 import com.alesegdia.troidgen.IRoomProvider;
 import com.alesegdia.troidgen.LayoutBuilder;
 import com.alesegdia.troidgen.LayoutBuilderConfig;
-import com.alesegdia.troidgen.MinSizeRoomGroupEvaluator;
+import com.alesegdia.troidgen.MinSizeRoomGroupValidator;
 import com.alesegdia.troidgen.OverlapSolverConfig;
 import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
+import com.alesegdia.troidgen.room.Room;
+import com.alesegdia.troidgen.util.MiscRoomUtils;
 import com.alesegdia.troidgen.util.Rect;
 
 public class Test_LayoutBuilder {
@@ -25,14 +28,19 @@ public class Test_LayoutBuilder {
 		osc.enableTweakNearSeparation = false;
 		
 		lbc.osc = osc;
+		lbc.spawnRect = new Rect(-8, -8, 16, 16);
 		
 		IRoomProvider roomProvider = new RandomRoomProvider( 1, 4 );
-		MinSizeRoomGroupEvaluator msrge = new MinSizeRoomGroupEvaluator( 30 );
-		List<Rect> result = lb.generate(lbc, roomProvider, msrge);
+		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 30 );
+		List<Room> result = lb.generate(lbc, roomProvider, msrge);
 
 		RectDebugger rd = new RectDebugger(result, 800, 600);
 		rd.Show();
 		
+		GraphBuilder gb = new GraphBuilder();
+		gb.generate(result);
+		
+		System.out.println(result);
 	}
 	
 }
