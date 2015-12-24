@@ -6,6 +6,11 @@ public class Vec2 {
 		Set(f,g);
 	}
 
+	public Vec2(Vec2 o) {
+		this.x = o.x;
+		this.y = o.y;
+	}
+
 	public void Set(float f, float g) {
 		this.x = f;
 		this.y = g;
@@ -52,6 +57,27 @@ public class Vec2 {
 	public void scale(float f) {
 		this.x *= f;
 		this.y *= f;
+	}
+	
+	@Override
+	public boolean equals( Object o )
+	{
+		assert(o instanceof Vec2);
+		if( o == this ) return true;
+		Vec2 other = ((Vec2)o);
+		return this.x == other.x && this.y == other.y;
+	}
+	
+	@Override
+	public Vec2 clone()
+	{
+		return new Vec2(x, y);
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return (int) (x * y * 1000);
 	}
 	
 }
