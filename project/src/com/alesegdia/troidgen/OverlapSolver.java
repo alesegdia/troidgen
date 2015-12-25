@@ -97,7 +97,7 @@ public class OverlapSolver {
 			}
 		}
 		
-		for( Rect r : rects )
+		for( Rect r : testRects )
 		{
 			r.position.x = (float) Math.round(r.position.x / osc.resolution);
 			r.position.y = (float) Math.round(r.position.y / osc.resolution);
