@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.util.Rect;
-import com.alesegdia.troidgen.util.Vec2;
 
 public class Room extends Rect {
 
@@ -30,18 +29,19 @@ public class Room extends Rect {
 	}
 
 	private void computeLinks() {
+		this.links = new LinkedList<Link>();
 		for( int x = 0; x < this.size.x; x++ )
 		{
 			for( int y = 0; y < this.size.y; y++ )
 			{
 				if( y == 0 )
 				{
-					this.links.add(new Link(x, y, Direction.TOP, this));
+					this.links.add(new Link(x, y, Direction.DOWN, this));
 				}
 				
 				if( y == this.size.y -1 )
 				{
-					this.links.add(new Link(x, y, Direction.DOWN, this));
+					this.links.add(new Link(x, y, Direction.TOP, this));
 				}
 				
 				if( x == 0 )
@@ -56,11 +56,7 @@ public class Room extends Rect {
 				
 			}
 		}
-	}
-
-	public void addLink( Link l )
-	{
-		links.add(l);
+		
 	}
 
 	public List<LinkPair> getPossibleConnections( Room other )
@@ -69,13 +65,15 @@ public class Room extends Rect {
 		for( Link l : links )
 		{
 			for( Link ol : other.links )
-			if( l.canConnect( ol ) )
 			{
-				if( possibleConnections == null )
+				if( l.canConnect( ol ) )
 				{
-					possibleConnections = new LinkedList<LinkPair>();
+					if( possibleConnections == null )
+					{
+						possibleConnections = new LinkedList<LinkPair>();
+					}
+					possibleConnections.add(new LinkPair( l, ol ));
 				}
-				possibleConnections.add(new LinkPair( l, ol ));
 			}
 		}
 		return possibleConnections;
@@ -106,18 +104,6 @@ public class Room extends Rect {
 		return false;
 	}
 
-	@Override
-	public Room clone()
-	{
-		Room mg = new Room( this.size.x, this.size.y, this.restrictionSet );
-		for( Link gl : links )
-		{
-			assert(gl.isConnected());
-			mg.links.add( new Link(gl.relCoord.x, gl.relCoord.y, gl.direction, mg) );
-		}
-		return mg;
-	}
-	
 	public boolean connectsWith_(Room other, List<Room> visited)
 	{
 		for( Link l : this.links )
@@ -154,6 +140,17 @@ public class Room extends Rect {
 		s += ">\n";
 		
 		return s;		
+	}
+
+	public boolean directlyConnectedWith(Room r2) {
+		for( Link l : links )
+		{
+			if( l.isConnected() && l.connectedRoom == r2 )
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
