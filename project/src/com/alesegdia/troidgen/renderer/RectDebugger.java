@@ -34,13 +34,14 @@ public class RectDebugger extends JComponent {
 		{
 			this.rects.add(new Room(r));
 		}
+		this.rects = rects;
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.LIGHT_GRAY);
-		renderGrid(g);
 		renderRects(g);
+		renderGrid(g);
+
 	}
 
 	private void renderRects(Graphics g) {
@@ -69,16 +70,16 @@ public class RectDebugger extends JComponent {
 				}
 				else
 				{
-					g.setColor(Color.pink);
+					g.setColor(new Color(0, 0, 128));
 				}
 
 				switch( l.direction )
 				{
 				case TOP:
-					g.fillRect((int) (xrel + mid - 2), y1, 4, 4);
+					g.fillRect((int) (xrel + mid - 2), y1 + y2 - 4, 4, 4);
 					break;
 				case DOWN:
-					g.fillRect((int) (xrel + mid - 2), y1 + y2 - 4, 4, 4);
+					g.fillRect((int) (xrel + mid - 2), y1, 4, 4);
 					break;
 				case LEFT:
 					g.fillRect(x1, (int) (yrel + mid - 2), 4, 4);
@@ -94,6 +95,8 @@ public class RectDebugger extends JComponent {
 	}
 
 	private void renderGrid(Graphics g) {
+		g.setColor(Color.LIGHT_GRAY);
+
 		for( int i = 0; i < this.dimension.getWidth(); i += scale )
 		{
 			g.drawLine(0, i-2, (int) this.dimension.getWidth(), i);
