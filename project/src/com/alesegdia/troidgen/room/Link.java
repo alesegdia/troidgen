@@ -58,24 +58,25 @@ public class Link {
 	}
 
 	public boolean canConnect(Link l) {
-		if( !l.ownerRoom.collideWith(this.ownerRoom) )
+		assert(l.direction != Direction.NODIR);
+		if( l.ownerRoom != this.ownerRoom && l.ownerRoom.isTouching(this.ownerRoom) && getOppositeDirection() == l.direction )
 		{
-			if( getOppositeDirection() == l.direction )
+			Vec2 myAbs = this.getAbsCoords();
+			Vec2 otherAbs = l.getAbsCoords();
+			
+			float dx = ( myAbs.x - otherAbs.x );
+			float dy = ( myAbs.y - otherAbs.y );
+
+			switch( direction )
 			{
-				Vec2 myAbs = this.getAbsCoords();
-				Vec2 otherAbs = l.getAbsCoords();
-				float dx = Math.abs( myAbs.x - otherAbs.x );
-				float dy = Math.abs( myAbs.y - otherAbs.y );
-				switch( direction )
-				{
-				case TOP:    if( dx == 0 && dy == 1 ) return true; break;
-				case DOWN:  if( dx == 0 && dy == 1 ) return true; break;
-				case LEFT:  if( dx == 1 && dy == 0 ) return true; break;
-				case RIGHT: if( dx == 1 && dy == 0 ) return true; break;
-				case NODIR: break;
-				}
+			case TOP: return dx == 0 && dy == -1;
+			case DOWN: return dx == 0 && dy == 1;
+			case LEFT: return dx == 1 && dy == 0;
+			case RIGHT: return dx == -1 && dy == 0;
+			case NODIR: return false;
 			}
 		}
+
 		return false;
 	}
 	
