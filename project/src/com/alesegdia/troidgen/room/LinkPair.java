@@ -10,4 +10,9 @@ public class LinkPair {
 	public Link lA;
 	public Link lB;
 	
+	public void connect() {
+		lA.connectTo(lB);
+		lB.connectTo(lA);
+	}
+	
 }
