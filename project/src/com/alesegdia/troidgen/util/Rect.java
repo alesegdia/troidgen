@@ -24,6 +24,26 @@ public class Rect {
 		return "[" + position.x + "," + position.y + " - " + size.x + "," + size.y + "]";
 	}
 	
+	public float x1()
+	{
+		return this.position.x;
+	}
+	
+	public float y1()
+	{
+		return this.position.y;
+	}
+	
+	public float x2()
+	{
+		return this.position.x + this.size.x;
+	}
+	
+	public float y2()
+	{
+		return this.position.y + this.size.y;
+	}
+	
 	public boolean collideWith( Rect other )
 	{
 		float ax1, ay1, ax2, ay2, bx1, by1, bx2, by2;
