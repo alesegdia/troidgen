@@ -18,6 +18,11 @@ public class Test_RectTouching {
 		System.out.println("BR: " + rr.isTouching(r2));
 		System.out.println("BL: " + rr.isTouching(r3));
 		System.out.println("TR: " + rr.isTouching(r4));
+		
+		Rect r5 = new Rect(-3, 0, 3, 3);
+		System.out.println("r5 touching: " + rr.isTouching(r5));
+		System.out.println("r5 collidin: " + rr.collideWith(r5));
+		
 	}
 	
 }

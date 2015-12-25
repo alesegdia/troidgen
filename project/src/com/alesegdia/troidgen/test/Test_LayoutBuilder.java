@@ -6,6 +6,7 @@ import com.alesegdia.troidgen.GraphBuilder;
 import com.alesegdia.troidgen.IRoomProvider;
 import com.alesegdia.troidgen.LayoutBuilder;
 import com.alesegdia.troidgen.LayoutBuilderConfig;
+import com.alesegdia.troidgen.LinkBuilder;
 import com.alesegdia.troidgen.MinSizeRoomGroupValidator;
 import com.alesegdia.troidgen.OverlapSolverConfig;
 import com.alesegdia.troidgen.RandomRoomProvider;
@@ -26,6 +27,7 @@ public class Test_LayoutBuilder {
 		OverlapSolverConfig osc = new OverlapSolverConfig();
 		osc.separationParameter = 1f;
 		osc.enableTweakNearSeparation = false;
+		osc.resolution = 1;
 		
 		lbc.osc = osc;
 		lbc.spawnRect = new Rect(-8, -8, 16, 16);
@@ -34,13 +36,17 @@ public class Test_LayoutBuilder {
 		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 30 );
 		List<Room> result = lb.generate(lbc, roomProvider, msrge);
 
-		RectDebugger rd = new RectDebugger(result, 800, 600);
-		rd.Show();
-		
 		GraphBuilder gb = new GraphBuilder();
 		gb.generate(result);
 		
 		System.out.println(result);
+		
+		LinkBuilder linksb = new LinkBuilder();
+		linksb.generate(result);
+
+		RectDebugger rd = new RectDebugger(result, 800, 600);
+		rd.Show();
+
 	}
 	
 }
