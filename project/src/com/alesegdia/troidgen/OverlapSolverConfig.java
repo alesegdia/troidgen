@@ -13,19 +13,19 @@ public class OverlapSolverConfig
 	public Rect enclosingRect = new Rect( -400, -400, 800, 800 );
 
 	public float enclosingLeft() {
-		return enclosingRect.position.x;
+		return enclosingRect.position.x * resolution;
 	}
 	
 	public float enclosingRight() {
-		return enclosingRect.position.x + enclosingRect.size.x;
+		return (enclosingRect.position.x + enclosingRect.size.x) * resolution;
 	}
 	
 	public float enclosingTop() {
-		return enclosingRect.position.y;
+		return enclosingRect.position.y * resolution;
 	}
 	
 	public float enclosingBottom() {
-		return enclosingRect.position.y + enclosingRect.size.y;
+		return (enclosingRect.position.y + enclosingRect.size.y) * resolution;
 	}
 	
 	

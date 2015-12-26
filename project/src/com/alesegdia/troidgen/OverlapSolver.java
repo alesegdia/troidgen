@@ -22,12 +22,14 @@ public class OverlapSolver {
 		List<Room> rects = new LinkedList<Room>();
 		for( Room r : testRects )
 		{
-			rects.add(new Room(
-					r.position.x 	* osc.resolution,
-					r.position.y 	* osc.resolution,
-					r.size.x 		* osc.resolution,
-					r.size.y 		* osc.resolution));
+			Room rr = new Room(r);
+			rects.add(rr);
+			rr.position.x *= osc.resolution;
+			rr.position.y *= osc.resolution;
+			rr.size.x *= osc.resolution;
+			rr.size.y *= osc.resolution;
 		}
+		
 		boolean overlap = true;
 		while( overlap )
 		{
@@ -76,10 +78,10 @@ public class OverlapSolver {
 							repulse(r1, new Vec2(nonZeroRnd(-1, 1), nonZeroRnd(-1, 1)), sepPar );
 						}
 						
-						if( r1.position.x < osc.enclosingLeft() * osc.resolution ) r1.position.x = -400;
-						if( r1.position.x > osc.enclosingRight() * osc.resolution ) r1.position.x = 400;
-						if( r1.position.y < osc.enclosingTop() * osc.resolution ) r1.position.y = -400;
-						if( r1.position.y > osc.enclosingBottom() * osc.resolution) r1.position.y = 400;
+						if( r1.position.x < osc.enclosingLeft() ) r1.position.x = osc.enclosingLeft();
+						if( r1.position.x + r1.size.x > osc.enclosingRight() ) r1.position.x = osc.enclosingRight();
+						if( r1.position.y < osc.enclosingTop() ) r1.position.y = osc.enclosingTop();
+						if( r1.position.y + r1.size.y > osc.enclosingBottom() ) r1.position.y = osc.enclosingBottom();
 						// bad, ugly forms
 						//break;
 					}
@@ -97,7 +99,7 @@ public class OverlapSolver {
 			}
 		}
 		
-		for( Rect r : testRects )
+		for( Rect r : rects )
 		{
 			r.position.x = (float) Math.round(r.position.x / osc.resolution);
 			r.position.y = (float) Math.round(r.position.y / osc.resolution);
