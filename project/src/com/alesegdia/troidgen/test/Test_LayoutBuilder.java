@@ -27,7 +27,8 @@ public class Test_LayoutBuilder {
 		OverlapSolverConfig osc = new OverlapSolverConfig();
 		osc.separationParameter = 1f;
 		osc.enableTweakNearSeparation = false;
-		osc.resolution = 1;
+		osc.resolution = 64;
+		osc.enclosingRect = new Rect(-20, -15, 40, 30);
 		
 		lbc.osc = osc;
 		lbc.spawnRect = new Rect(-8, -8, 16, 16);
