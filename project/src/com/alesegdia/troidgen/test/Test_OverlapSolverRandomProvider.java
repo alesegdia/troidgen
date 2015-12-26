@@ -19,7 +19,7 @@ public class Test_OverlapSolverRandomProvider {
 		RNG.rng = new RNG();
 		IRoomProvider geoProv = new RandomRoomProvider( 1, 4 );
 
-		List<Room> rects = geoProv.provideRandomList(20);
+		List<Room> rects = geoProv.provideRandomList(20, null);
 		MiscRoomUtils.RandomPlaceInRange(rects, new Room(-4, -4, 8, 8));
 		
 		OverlapSolver os = new OverlapSolver();

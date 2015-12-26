@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
@@ -56,7 +57,7 @@ public class ManualRoomProvider implements IRoomProvider {
 	}
 
 	@Override
-	public List<Room> provideRandomList(int i) {
+	public List<Room> provideRandomList(int numRooms, RestrictionSet rs) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -20,7 +20,7 @@ public class LayoutBuilder {
 		while( !rge.validate(outputLayout) )
 		{
 			//System.out.println(i);
-			List<Room> testRects = geometryProvider.provideRandomList( lbc.numRooms );
+			List<Room> testRects = geometryProvider.provideRandomList( lbc.numRooms, null );
 			MiscRoomUtils.RandomPlaceInRange(testRects, lbc.spawnRect);
 			testRects.addAll(outputLayout);
 			testRects = os.solve(lbc.osc, testRects, outputLayout);
