@@ -17,7 +17,7 @@ public class Test_OverlapSolverRandom {
 	{
 		RNG.rng = new RNG();
 		List<Room> rects = new LinkedList<Room>();
-		for( int i = 0; i < 30; i++ )
+		for( int i = 0; i < 20; i++ )
 		{
 			int x = RNG.rng.nextInt(-4, 4);
 			int y = RNG.rng.nextInt(-4, 4);
