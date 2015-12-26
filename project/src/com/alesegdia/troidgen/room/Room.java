@@ -130,16 +130,7 @@ public class Room extends Rect {
 	@Override
 	public String toString()
 	{
-		String s = "\n<" + neighboors.size() + "-";
-		
-		for( Room r : neighboors )
-		{
-			s += r.position + ",";
-		}
-		
-		s += ">\n";
-		
-		return s;		
+		return "(" + this.position.x + ", " + this.position.y + ", " + this.size.x + ", " + this.size.y + ")";
 	}
 
 	public boolean directlyConnectedWith(Room r2) {
