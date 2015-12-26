@@ -11,6 +11,7 @@ import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
+import com.alesegdia.troidgen.util.Util;
 import com.alesegdia.troidgen.util.Vec2;
 
 public class ManualRoomProvider implements IRoomProvider {
@@ -35,11 +36,6 @@ public class ManualRoomProvider implements IRoomProvider {
 		availableGeom.add(mg);
 	}
 	
-	public Room pickRandomRoomWithSize( Vec2 size )
-	{
-		return geomBySize.get( size ).get( RNG.rng.nextInt( 0, geomBySize.get( size ).size()-1));
-	}
-	
 	public void debug()
 	{
 		Iterator it = geomBySize.entrySet().iterator();
@@ -58,8 +54,28 @@ public class ManualRoomProvider implements IRoomProvider {
 
 	@Override
 	public List<Room> provideRandomList(int numRooms, RestrictionSet rs) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Room> feasibleRooms = new LinkedList<Room>();
+		
+		for( Room r : availableGeom )
+		{
+			if( r.restrictionSet != null && r.restrictionSet.resolves(rs) )
+			{
+				feasibleRooms.add(r);
+			}
+		}
+		
+		assert(numRooms <= feasibleRooms.size());
+		Util.shuffle(feasibleRooms);
+
+		List<Room> retlist = new LinkedList<Room>();
+		for( int i = 0; i < numRooms; i++ )
+		{
+			int max = feasibleRooms.size() - 1;
+			assert max > 0: "there are no rooms satisfying all restrictions";
+			retlist.add(feasibleRooms.get(RNG.rng.nextInt(0, max)));
+		}
+		
+		return retlist;
 	}
 	
 }
