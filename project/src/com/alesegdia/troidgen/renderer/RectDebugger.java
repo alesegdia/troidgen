@@ -25,9 +25,15 @@ public class RectDebugger extends JComponent {
 	private int scale = 14;
 	private List<Room> rects = new LinkedList<Room>();
 	private Vec2 center;
+
+	private Rect enclosing;
 	
 	public RectDebugger(List<Room> rects, int width, int height)
 	{
+		this(rects, width, height, null);
+	}
+	
+	public RectDebugger(List<Room> rects, int width, int height, Rect enclosingRect) {
 		this.dimension = new Dimension(width, height);
 		this.center = new Vec2(width/2, height/2);
 		for( Room r : rects )
@@ -35,8 +41,9 @@ public class RectDebugger extends JComponent {
 			this.rects.add(new Room(r));
 		}
 		this.rects = rects;
+		this.enclosing = enclosingRect;
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		renderRects(g);
@@ -45,6 +52,18 @@ public class RectDebugger extends JComponent {
 	}
 
 	private void renderRects(Graphics g) {
+		
+		if( enclosing != null )
+		{
+			int s2 = scale/4;
+			int x1 = (int) ((enclosing.position.x) * scale + center.x) - scale/2;
+			int y1 = (int) ((enclosing.position.y) * scale + center.y) - scale/2;
+			int x2 = (int) ((enclosing.size.x) * scale);
+			int y2 = (int) ((enclosing.size.y) * scale);
+			g.setColor(new Color(220, 220, 255));
+			g.fillRect(x1, y1, x2, y2);
+		}
+		
 		for( Room r : rects )
 		{
 			int s2 = scale/4;

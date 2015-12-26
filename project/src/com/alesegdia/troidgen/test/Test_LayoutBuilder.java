@@ -44,7 +44,7 @@ public class Test_LayoutBuilder {
 		LinkBuilder linksb = new LinkBuilder();
 		linksb.generate(result);
 
-		RectDebugger rd = new RectDebugger(result, 800, 600);
+		RectDebugger rd = new RectDebugger(result, 800, 600, osc.enclosingRect);
 		rd.Show();
 
 	}
