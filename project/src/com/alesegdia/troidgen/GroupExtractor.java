@@ -37,13 +37,13 @@ public class GroupExtractor {
 		return rectGroups;
 	}
 	
-	public void collectConnected(List<Room> testRects, List<Room> assignedRooms, List<Room> currentGroup, Rect r)
+	public void collectConnected(List<Room> testRects, List<Room> assignedRooms, List<Room> currentGroup, Room r)
 	{
 		// iterate over all rooms to check which ones are connected
 		for( Room inner_room : testRects )
 		{
 			// if it's not the same room, it is not assigned and it is touching the other room
-			if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) )
+			if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) && r.getPossibleConnections(inner_room) != null  )
 			{
 				// add this room to the current group
 				currentGroup.add(inner_room);
