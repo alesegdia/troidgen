@@ -8,7 +8,6 @@ import com.alesegdia.troidgen.util.Rect;
 
 public interface IRoomProvider {
 
-	public Room createRandomRoom();
 	public List<Room> provideRandomList(int numRooms, RestrictionSet rs);
 	
 }
