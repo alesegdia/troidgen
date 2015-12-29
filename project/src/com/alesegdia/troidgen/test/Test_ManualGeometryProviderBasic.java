@@ -26,8 +26,6 @@ public class Test_ManualGeometryProviderBasic {
 		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
 		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
 		
-		mgp.debug();
-		
 		test(mgp, 10, new RestrictionSet(4, true, false, false, false));
 		// test(mgp, 10, new RestrictionSet(4, false, false, true, false)); fails because no elements resolves
 		test(mgp, 10, new RestrictionSet(4, true, false, false, false));
