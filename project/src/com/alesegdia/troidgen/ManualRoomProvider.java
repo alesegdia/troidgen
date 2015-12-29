@@ -58,7 +58,7 @@ public class ManualRoomProvider implements IRoomProvider {
 			}
 		}
 		
-		assert(numRooms <= feasibleRooms.size());
+		assert(feasibleRooms.size() != 0);
 		Util.shuffle(feasibleRooms);
 
 		List<Room> retlist = new LinkedList<Room>();
