@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.alesegdia.troidgen.room.Room;
-import com.alesegdia.troidgen.util.Rect;
 
 public class GroupExtractor {
 	

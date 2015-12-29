@@ -55,7 +55,6 @@ public class RectDebugger extends JComponent {
 		
 		if( enclosing != null )
 		{
-			int s2 = scale/4;
 			int x1 = (int) ((enclosing.position.x) * scale + center.x) - scale/2;
 			int y1 = (int) ((enclosing.position.y) * scale + center.y) - scale/2;
 			int x2 = (int) ((enclosing.size.x) * scale);

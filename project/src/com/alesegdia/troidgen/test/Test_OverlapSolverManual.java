@@ -8,7 +8,6 @@ import com.alesegdia.troidgen.OverlapSolverConfig;
 import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
-import com.alesegdia.troidgen.util.Rect;
 
 public class Test_OverlapSolverManual {
 

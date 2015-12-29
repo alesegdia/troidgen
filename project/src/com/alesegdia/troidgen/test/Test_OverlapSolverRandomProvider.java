@@ -10,7 +10,6 @@ import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.RNG;
-import com.alesegdia.troidgen.util.Rect;
 import com.alesegdia.troidgen.util.MiscRoomUtils;
 
 public class Test_OverlapSolverRandomProvider {

@@ -13,7 +13,6 @@ import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
-import com.alesegdia.troidgen.util.MiscRoomUtils;
 import com.alesegdia.troidgen.util.Rect;
 
 public class Test_LayoutBuilder2 {
