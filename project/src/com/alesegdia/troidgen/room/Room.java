@@ -12,6 +12,26 @@ public class Room extends Rect {
 	public RestrictionSet restrictionSet;
 	public List<Room> neighboors = new LinkedList<Room>();
 	
+	public static Room CreateFromInfo(RoomInfo rinfo)
+	{
+		Room r = new Room( rinfo.size.x, rinfo.size.y, rinfo.restriction );
+		r.links.clear();
+		
+		for( LinkInfo linfo : rinfo.linkInfo )
+		{
+			r.links.add(new Link(linfo.relativeCoordinate.x, linfo.relativeCoordinate.y, linfo.direction, r));
+		}
+		
+		r.restrictionSet = rinfo.restriction;
+		
+		return r;
+	}
+	
+	public Room()
+	{
+		super(0,0,0,0);
+	}
+	
 	public Room( float width, float height, RestrictionSet rs ) {
 		super( 0, 0, width, height );
 		restrictionSet = rs;
