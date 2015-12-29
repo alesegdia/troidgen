@@ -15,20 +15,20 @@ public class Room extends Rect {
 	public Room( float width, float height, RestrictionSet rs ) {
 		super( 0, 0, width, height );
 		restrictionSet = rs;
-		computeLinks();
+		computeAllLinks();
 	}
 	
 	public Room(Room r) {
 		super( r.position.x, r.position.y, r.size.x, r.size.y );
-		computeLinks();
+		computeAllLinks();
 	}
 
 	public Room(float f, float g, float h, float i) {
 		super(f, g, h, i);
-		computeLinks();
+		computeAllLinks();
 	}
 
-	private void computeLinks() {
+	private void computeAllLinks() {
 		this.links = new LinkedList<Link>();
 		for( int x = 0; x < this.size.x; x++ )
 		{
@@ -53,10 +53,8 @@ public class Room extends Rect {
 				{
 					this.links.add(new Link(x, y, Direction.RIGHT, this));
 				}
-				
 			}
 		}
-		
 	}
 
 	public List<LinkPair> getPossibleConnections( Room other )
