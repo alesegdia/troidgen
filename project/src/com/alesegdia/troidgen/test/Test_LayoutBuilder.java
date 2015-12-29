@@ -11,6 +11,7 @@ import com.alesegdia.troidgen.MinSizeRoomGroupValidator;
 import com.alesegdia.troidgen.OverlapSolverConfig;
 import com.alesegdia.troidgen.RandomRoomProvider;
 import com.alesegdia.troidgen.renderer.RectDebugger;
+import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.MiscRoomUtils;
 import com.alesegdia.troidgen.util.Rect;
@@ -34,8 +35,10 @@ public class Test_LayoutBuilder {
 		lbc.spawnRect = new Rect(-8, -8, 16, 16);
 		
 		IRoomProvider roomProvider = new RandomRoomProvider( 1, 4 );
-		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 30 );
-		List<Room> result = lb.generate(lbc, roomProvider, msrge);
+		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 20 );
+
+		RestrictionSet rs = new RestrictionSet(4, true, true, true, true);
+		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
 
 		GraphBuilder gb = new GraphBuilder();
 		gb.generate(result);

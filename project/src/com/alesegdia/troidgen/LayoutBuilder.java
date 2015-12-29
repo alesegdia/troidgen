@@ -5,12 +5,13 @@ import java.util.List;
 
 import com.alesegdia.troidgen.util.RNG;
 import com.alesegdia.troidgen.util.Rect;
+import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.MiscRoomUtils;
 
 public class LayoutBuilder {
 
-	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge )
+	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge, RestrictionSet rs )
 	{
 		RNG.rng = new RNG();
 		OverlapSolver os = new OverlapSolver();
@@ -20,7 +21,7 @@ public class LayoutBuilder {
 		while( !rge.validate(outputLayout) )
 		{
 			//System.out.println(i);
-			List<Room> testRects = geometryProvider.provideRandomList( lbc.numRooms, null );
+			List<Room> testRects = geometryProvider.provideRandomList( lbc.numRooms, rs );
 			MiscRoomUtils.RandomPlaceInRange(testRects, lbc.spawnRect);
 			testRects.addAll(outputLayout);
 			testRects = os.solve(lbc.osc, testRects, outputLayout);
