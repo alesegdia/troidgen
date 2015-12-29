@@ -15,7 +15,13 @@ public class RoomInfo {
 	@Override
 	public String toString()
 	{
-		return "[" + size.x + "," + size.y + "]";
+		String s = "[" + size.x + "," + size.y + ", ";
+		for( LinkInfo l : linkInfo )
+		{
+			String sl = "(" + l.direction + " (" + l.relativeCoordinate.x + "," + l.relativeCoordinate.y + ")), ";
+			s = s + sl;
+		}
+		return s + "]";
 	}
 	
 }
