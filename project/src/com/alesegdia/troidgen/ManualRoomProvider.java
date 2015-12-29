@@ -47,12 +47,6 @@ public class ManualRoomProvider implements IRoomProvider {
 	}
 
 	@Override
-	public Room createRandomRoom() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Room> provideRandomList(int numRooms, RestrictionSet rs) {
 		List<Room> feasibleRooms = new LinkedList<Room>();
 		

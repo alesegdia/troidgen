@@ -18,7 +18,6 @@ public class RandomRoomProvider implements IRoomProvider {
 		this.min = min; this.max = max;
 	}
 	
-	@Override
 	public Room createRandomRoom()
 	{
 		return new Room( RNG.rng.nextInt(min, max), RNG.rng.nextInt(min, max), null );
