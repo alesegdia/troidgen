@@ -11,14 +11,28 @@ public class RoomInfo {
 	public Vec2 size = new Vec2(0,0);
 	public List<LinkInfo> linkInfo = new LinkedList<LinkInfo>();
 	public RestrictionSet restriction;
+	public RoomType rtype;
+	public RestrictionSet passageNextRestriction;
+	public int constraintSolved;
 	
 	@Override
 	public String toString()
 	{
-		String s = "[" + size.x + "," + size.y + ", ";
+		String s = "[" + this.rtype;
+		
+		if( rtype == RoomType.ABILITY )
+		{
+			s += ",\n\tsolved(" + this.constraintSolved + ")";
+		}
+		if( rtype == RoomType.PASSAGE )
+		{
+			s += ",\n\tneeded(" + this.passageNextRestriction + ")";
+		}
+		
+		s += ",\n\tsize(" + size.x + "," + size.y + "),\n";
 		for( LinkInfo l : linkInfo )
 		{
-			String sl = "(" + l.direction + " (" + l.relativeCoordinate.x + "," + l.relativeCoordinate.y + ")), ";
+			String sl = "\t(" + l.direction + " (" + l.relativeCoordinate.x + "," + l.relativeCoordinate.y + ")),\n";
 			s = s + sl;
 		}
 		return s + "]";

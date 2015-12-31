@@ -11,25 +11,19 @@ public class Room extends Rect {
 	public List<Link> links = new LinkedList<Link>();
 	public RestrictionSet restrictionSet;
 	public List<Room> neighboors = new LinkedList<Room>();
+	public RoomType rtype;
 	
-	public static Room CreateFromInfo(RoomInfo rinfo)
+	public Room(RoomInfo rinfo)
 	{
-		Room r = new Room( rinfo.size.x, rinfo.size.y, rinfo.restriction );
-		r.links.clear();
-		
+		this(rinfo.size.x, rinfo.size.y, rinfo.restriction);
+		links.clear();
 		for( LinkInfo linfo : rinfo.linkInfo )
 		{
-			r.links.add(new Link(linfo.relativeCoordinate.x, linfo.relativeCoordinate.y, linfo.direction, r));
+			links.add(new Link(linfo.relativeCoordinate.x, linfo.relativeCoordinate.y, linfo.direction, this));
 		}
 		
-		r.restrictionSet = rinfo.restriction;
-		
-		return r;
-	}
-	
-	public Room()
-	{
-		super(0,0,0,0);
+		restrictionSet = rinfo.restriction;
+
 	}
 	
 	public Room( float width, float height, RestrictionSet rs ) {
