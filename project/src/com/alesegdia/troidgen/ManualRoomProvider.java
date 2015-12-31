@@ -41,5 +41,12 @@ public class ManualRoomProvider implements IRoomProvider {
 		
 		return retlist;
 	}
+
+	public void addAll(List<Room> rooms) {
+		for( Room r : rooms )
+		{
+			add(r);
+		}
+	}
 	
 }
