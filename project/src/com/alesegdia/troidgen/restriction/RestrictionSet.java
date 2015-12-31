@@ -59,4 +59,25 @@ public class RestrictionSet {
 		restrictions[i] = b;
 	}
 
+	public static RestrictionSet FromString(String constraintStr) {
+		RestrictionSet rs = new RestrictionSet(constraintStr.length());
+		for( int i = 0; i < constraintStr.length(); i++ )
+		{
+			char bit = constraintStr.charAt(i);
+			if( bit == '1' )
+			{
+				rs.set(i, true);
+			}
+			else if( bit == '0' )
+			{
+				rs.set(i, false);
+			}
+			else
+			{
+				assert(false);
+			}
+		}
+		return rs;
+	}
+
 }
