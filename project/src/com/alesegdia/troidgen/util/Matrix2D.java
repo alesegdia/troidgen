@@ -71,6 +71,23 @@ public class Matrix2D <T> {
 			data.set(i, val);
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		String s = "";
+		
+		for( int i = 0; i < this.rows; i++ )
+		{
+			for( int j = 0; j < this.cols; j++ )
+			{
+				s += "\t" + this.Get(i, j);
+			}
+			s += "\n";
+		}
+		
+		return s;
+	}
 
 
 }
