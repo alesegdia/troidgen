@@ -15,16 +15,16 @@ public class Test_ManualGeometryProviderBasic {
 
 		ManualRoomProvider mgp = new ManualRoomProvider();
 		
-		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
-		mgp.addGeometryModel(new Room(1, 2, new RestrictionSet(4, true, true, false, false)));
-		mgp.addGeometryModel(new Room(2, 1, new RestrictionSet(4, true, true, false, true)));
-		mgp.addGeometryModel(new Room(1, 3, new RestrictionSet(4, true, true, false, true)));
-		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, true, false)));
-		mgp.addGeometryModel(new Room(1, 3, new RestrictionSet(4, true, false, true, false)));
-		mgp.addGeometryModel(new Room(2, 1, new RestrictionSet(4, true, false, false, false)));
-		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, true)));
-		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
-		mgp.addGeometryModel(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
+		mgp.add(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
+		mgp.add(new Room(1, 2, new RestrictionSet(4, true, true, false, false)));
+		mgp.add(new Room(2, 1, new RestrictionSet(4, true, true, false, true)));
+		mgp.add(new Room(1, 3, new RestrictionSet(4, true, true, false, true)));
+		mgp.add(new Room(3, 3, new RestrictionSet(4, true, false, true, false)));
+		mgp.add(new Room(1, 3, new RestrictionSet(4, true, false, true, false)));
+		mgp.add(new Room(2, 1, new RestrictionSet(4, true, false, false, false)));
+		mgp.add(new Room(3, 3, new RestrictionSet(4, true, false, false, true)));
+		mgp.add(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
+		mgp.add(new Room(3, 3, new RestrictionSet(4, true, false, false, false)));
 		
 		test(mgp, 10, new RestrictionSet(4, true, false, false, false));
 		// test(mgp, 10, new RestrictionSet(4, false, false, true, false)); fails because no elements resolves

@@ -11,7 +11,7 @@ public class ManualRoomProvider implements IRoomProvider {
 
 	private List<Room> availableGeom = new LinkedList<Room>();
 	
-	public void addGeometryModel( Room mg )
+	public void add( Room mg )
 	{
 		availableGeom.add(mg);
 	}
