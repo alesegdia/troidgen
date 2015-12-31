@@ -40,7 +40,7 @@ public class Test_LayoutBuilder2 {
 		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
 
 		GraphBuilder gb = new GraphBuilder();
-		gb.generate(result);
+		gb.build(result);
 		
 		System.out.println(result);
 		

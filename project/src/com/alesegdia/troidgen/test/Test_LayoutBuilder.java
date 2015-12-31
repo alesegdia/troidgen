@@ -14,6 +14,7 @@ import com.alesegdia.troidgen.renderer.RectDebugger;
 import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.Rect;
+import com.alesegdia.troidgen.util.UpperMatrix2D;
 
 public class Test_LayoutBuilder {
 
@@ -40,7 +41,8 @@ public class Test_LayoutBuilder {
 		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
 
 		GraphBuilder gb = new GraphBuilder();
-		gb.generate(result);
+		UpperMatrix2D<Float> m = gb.build(result);
+		System.out.println(m);
 		
 		System.out.println(result);
 		
