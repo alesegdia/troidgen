@@ -21,7 +21,7 @@ public class Room extends Rect {
 		{
 			links.add(new Link(linfo.relativeCoordinate.x, linfo.relativeCoordinate.y, linfo.direction, this));
 		}
-		
+		this.rtype = rinfo.rtype;
 		restrictionSet = rinfo.restriction;
 
 	}
