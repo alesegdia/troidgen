@@ -35,7 +35,7 @@ public class ManualRoomProvider implements IRoomProvider {
 		for( int i = 0; i < numRooms; i++ )
 		{
 			int max = feasibleRooms.size() - 1;
-			assert max > 0: "there are no rooms satisfying all restrictions";
+			assert max >= 0: "there are no rooms satisfying all restrictions";
 			retlist.add(feasibleRooms.get(RNG.rng.nextInt(0, max)));
 		}
 		
