@@ -35,7 +35,15 @@ public class Room extends Rect {
 	
 	public Room(Room r) {
 		super( r.position.x, r.position.y, r.size.x, r.size.y );
-		computeAllLinks();
+		copyLinks(r);
+		//computeAllLinks();
+	}
+
+	private void copyLinks(Room r) {
+		for( Link link : r.links )
+		{
+			links.add(new Link(link, r));
+		}
 	}
 
 	public Room(float f, float g, float h, float i) {
@@ -74,17 +82,13 @@ public class Room extends Rect {
 
 	public List<LinkPair> getPossibleConnections( Room other )
 	{
-		List<LinkPair> possibleConnections = null;
+		List<LinkPair> possibleConnections = new LinkedList<LinkPair>();
 		for( Link l : links )
 		{
 			for( Link ol : other.links )
 			{
 				if( l.canConnect( ol ) )
 				{
-					if( possibleConnections == null )
-					{
-						possibleConnections = new LinkedList<LinkPair>();
-					}
 					possibleConnections.add(new LinkPair( l, ol ));
 				}
 			}

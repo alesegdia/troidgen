@@ -17,7 +17,7 @@ public class LinkBuilder {
 				if( r1 != r2 && r1.isTouching(r2) && !r1.directlyConnectedWith(r2) )
 				{
 					List<LinkPair> possibleLinks = r1.getPossibleConnections(r2);
-					if( possibleLinks != null )
+					if( possibleLinks.size() != 0 )
 					{
 						LinkPair lp = possibleLinks.get(RNG.rng.nextInt(0, possibleLinks.size()-1));
 						lp.connect();

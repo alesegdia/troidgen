@@ -17,6 +17,12 @@ public class Link {
 		this.ownerRoom = owner;
 	}
 	
+	public Link(Link link, Room r) {
+		this.relCoord.set(link.relCoord);
+		this.direction = link.direction;
+		this.ownerRoom = r;
+	}
+
 	public Vec2 getAbsCoords()
 	{
 		return new Vec2( ownerRoom.position.x + relCoord.x, ownerRoom.position.y + relCoord.y);
