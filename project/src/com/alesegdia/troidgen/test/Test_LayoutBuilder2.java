@@ -34,7 +34,7 @@ public class Test_LayoutBuilder2 {
 		lbc.spawnRect = new Rect(-20, -8, 40, 16);
 		
 		IRoomProvider roomProvider = new RandomRoomProvider( 1, 4 );
-		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 30 );
+		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 10 );
 		
 		RestrictionSet rs = new RestrictionSet(4, true, true, true, true);
 		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
