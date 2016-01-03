@@ -9,4 +9,6 @@ public interface IRoomProvider {
 
 	public List<Room> provideRandomList(int numRooms, RestrictionSet rs);
 	
+	public void notifySelected( List<Room> rooms );
+	
 }

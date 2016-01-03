@@ -48,5 +48,11 @@ public class ManualRoomProvider implements IRoomProvider {
 			add(r);
 		}
 	}
+
+	@Override
+	public void notifySelected(List<Room> rooms) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

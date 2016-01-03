@@ -31,5 +31,11 @@ public class RandomRoomProvider implements IRoomProvider {
 		}
 		return rects;
 	}
+
+	@Override
+	public void notifySelected(List<Room> rooms) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
