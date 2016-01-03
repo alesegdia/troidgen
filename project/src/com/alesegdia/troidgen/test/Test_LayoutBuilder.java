@@ -32,13 +32,25 @@ public class Test_LayoutBuilder {
 		osc.enclosingRect = new Rect(-20, -15, 40, 30);
 		
 		lbc.osc = osc;
-		lbc.spawnRect = new Rect(-8, -8, 16, 16);
+		lbc.spawnRect = new Rect(-8, -8, 10, 10);
 		
 		IRoomProvider roomProvider = new RandomRoomProvider( 1, 4 );
-		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 20 );
+		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 10 );
 
 		RestrictionSet rs = new RestrictionSet(4, true, true, true, true);
 		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
+		
+		lbc.spawnRect.position.y += 3;
+		MinSizeRoomGroupValidator msrge2 = new MinSizeRoomGroupValidator( 20 );
+
+		
+		result = lb.generate(lbc, roomProvider, msrge2, rs, result);
+
+		lbc.spawnRect.position.x -= 3;
+		
+		MinSizeRoomGroupValidator msrge3 = new MinSizeRoomGroupValidator( 30 );
+		
+		result = lb.generate(lbc, roomProvider, msrge3, rs, result);
 
 		GraphBuilder gb = new GraphBuilder();
 		UpperMatrix2D<Float> m = gb.build(result);
