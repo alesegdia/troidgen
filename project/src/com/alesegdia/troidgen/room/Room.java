@@ -42,7 +42,7 @@ public class Room extends Rect {
 	private void copyLinks(Room r) {
 		for( Link link : r.links )
 		{
-			links.add(new Link(link, r));
+			this.links.add(new Link(link, this));
 		}
 	}
 

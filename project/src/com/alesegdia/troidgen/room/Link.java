@@ -17,10 +17,10 @@ public class Link {
 		this.ownerRoom = owner;
 	}
 	
-	public Link(Link link, Room r) {
+	public Link(Link link, Room owner) {
 		this.relCoord.set(link.relCoord);
 		this.direction = link.direction;
-		this.ownerRoom = r;
+		this.ownerRoom = owner;
 	}
 
 	public Vec2 getAbsCoords()
