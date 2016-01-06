@@ -9,11 +9,11 @@ import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.MiscRoomUtils;
 
 public class LayoutBuilder {
-	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge, RestrictionSet rs ) {
-		return generate(lbc, geometryProvider, rge, rs, new LinkedList<Room>());
+	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge ) {
+		return generate(lbc, geometryProvider, rge, new LinkedList<Room>());
 	}
 
-	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge, RestrictionSet rs, List<Room> fixedGroup )
+	public List<Room> generate( LayoutBuilderConfig lbc, IRoomProvider geometryProvider, IRoomGroupValidator rge, List<Room> fixedGroup )
 	{
 		RNG.rng = new RNG();
 		OverlapSolver os = new OverlapSolver();
@@ -22,7 +22,7 @@ public class LayoutBuilder {
 
 		while( !rge.validate(outputLayout) )
 		{
-			List<Room> testRects = geometryProvider.provideRandomList( lbc.numRooms, rs );
+			List<Room> testRects = geometryProvider.provideList( lbc.numRooms );
 			MiscRoomUtils.RandomPlaceInRange(testRects, lbc.spawnRect);
 			testRects.addAll(outputLayout);
 			testRects = os.solve(lbc.osc, testRects, outputLayout);

@@ -23,7 +23,7 @@ public class RandomRoomProvider implements IRoomProvider {
 	}
 
 	@Override
-	public List<Room> provideRandomList(int numRooms, RestrictionSet rs) {
+	public List<Room> provideList(int numRooms) {
 		List<Room> rects = new LinkedList<Room>();
 		for( int i = 0; i < numRooms; i++ )
 		{

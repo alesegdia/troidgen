@@ -7,7 +7,7 @@ import com.alesegdia.troidgen.room.Room;
 
 public interface IRoomProvider {
 
-	public List<Room> provideRandomList(int numRooms, RestrictionSet rs);
+	public List<Room> provideList(int numRooms);
 	
 	public void notifySelected( List<Room> rooms );
 	

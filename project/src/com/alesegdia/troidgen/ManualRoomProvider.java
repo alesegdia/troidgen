@@ -17,15 +17,12 @@ public class ManualRoomProvider implements IRoomProvider {
 	}
 	
 	@Override
-	public List<Room> provideRandomList(int numRooms, RestrictionSet rs) {
+	public List<Room> provideList(int numRooms) {
 		List<Room> feasibleRooms = new LinkedList<Room>();
 		
 		for( Room r : availableGeom )
 		{
-			if( r.restrictionSet != null && r.restrictionSet.resolves(rs) )
-			{
-				feasibleRooms.add(r);
-			}
+			feasibleRooms.add(r);
 		}
 		
 		assert(feasibleRooms.size() != 0);

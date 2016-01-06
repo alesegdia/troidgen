@@ -36,7 +36,7 @@ public class Test_ManualGeometryProviderBasic {
 	private static void test( ManualRoomProvider mgp, int numRooms, RestrictionSet rs )
 	{
 		System.out.println("");
-		List<Room> l = mgp.provideRandomList(numRooms, rs);
+		List<Room> l = mgp.provideList(numRooms);
 		System.out.println(l);
 	}
 

@@ -37,20 +37,19 @@ public class Test_LayoutBuilder {
 		IRoomProvider roomProvider = new RandomRoomProvider( 1, 4 );
 		MinSizeRoomGroupValidator msrge = new MinSizeRoomGroupValidator( 10 );
 
-		RestrictionSet rs = new RestrictionSet(4, true, true, true, true);
-		List<Room> result = lb.generate(lbc, roomProvider, msrge, rs);
+		List<Room> result = lb.generate(lbc, roomProvider, msrge);
 		
 		lbc.spawnRect.position.y += 3;
 		MinSizeRoomGroupValidator msrge2 = new MinSizeRoomGroupValidator( 20 );
 
 		
-		result = lb.generate(lbc, roomProvider, msrge2, rs, result);
+		result = lb.generate(lbc, roomProvider, msrge2, result);
 
 		lbc.spawnRect.position.x -= 3;
 		
 		MinSizeRoomGroupValidator msrge3 = new MinSizeRoomGroupValidator( 30 );
 		
-		result = lb.generate(lbc, roomProvider, msrge3, rs, result);
+		result = lb.generate(lbc, roomProvider, msrge3, result);
 
 		GraphBuilder gb = new GraphBuilder();
 		UpperMatrix2D<Float> m = gb.build(result);
