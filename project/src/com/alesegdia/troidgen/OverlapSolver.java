@@ -49,7 +49,7 @@ public class OverlapSolver {
 						{
 							overlap = true;
 							thisOverlap = true;
-							Vec2 normal = r1.position.sub(r2.position);
+							Vec2 normal = r1.centroid().sub(r2.centroid());
 							push.x += normal.x;
 							push.y += normal.y;
 						}
