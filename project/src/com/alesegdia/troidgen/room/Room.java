@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.util.Rect;
+import com.alesegdia.troidgen.util.Vec2;
 
 public class Room extends Rect {
 
@@ -36,6 +37,7 @@ public class Room extends Rect {
 	public Room(Room r) {
 		super( r.position.x, r.position.y, r.size.x, r.size.y );
 		copyLinks(r);
+		this.rinfo = r.rinfo;
 		//computeAllLinks();
 	}
 
@@ -159,6 +161,10 @@ public class Room extends Rect {
 			}
 		}
 		return false;
+	}
+
+	public Vec2 centroid() {
+		return new Vec2( this.position.x + this.size.x / 2, this.position.y + this.size.y / 2 );
 	}
 
 }
