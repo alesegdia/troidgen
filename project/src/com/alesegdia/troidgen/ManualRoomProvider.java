@@ -51,5 +51,11 @@ public class ManualRoomProvider implements IRoomProvider {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean isOk() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

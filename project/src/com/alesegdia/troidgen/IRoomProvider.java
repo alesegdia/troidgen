@@ -10,5 +10,7 @@ public interface IRoomProvider {
 	public List<Room> provideList(int numRooms);
 	
 	public void notifySelected( List<Room> rooms );
+
+	public boolean isOk();
 	
 }
