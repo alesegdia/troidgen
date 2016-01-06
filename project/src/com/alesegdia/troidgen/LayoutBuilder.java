@@ -30,6 +30,7 @@ public class LayoutBuilder {
 			GroupExtractor ge = new GroupExtractor();
 			List<List<Room>> groups = ge.solve(testRects);
 			outputLayout = getBestGroup(groups);
+			geometryProvider.notifySelected(outputLayout);
 		}
 
 		return outputLayout;
