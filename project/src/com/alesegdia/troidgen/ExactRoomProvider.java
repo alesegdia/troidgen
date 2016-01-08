@@ -17,10 +17,12 @@ public class ExactRoomProvider implements IRoomProvider {
 	private Map<RoomInfo, Integer> neededRooms = new Hashtable<RoomInfo, Integer>();
 	private Map<RoomInfo, Integer> lastCount;
 	private boolean isOk = false;
+	private int totalNeeded;
 	
 	public void add( Room mg )
 	{
 		availableGeom.add(mg);
+		this.totalNeeded += mg.rinfo.neededRooms;
 		if( !neededRooms.containsKey(mg.rinfo) )
 		{
 			neededRooms.put(mg.rinfo, new Integer(mg.rinfo.neededRooms));
@@ -55,10 +57,6 @@ public class ExactRoomProvider implements IRoomProvider {
 				}
 	
 				int diff = needed - present;
-				
-				System.out.println("needed: " + needed);
-				System.out.println("present: " + present);
-				System.out.println("diff: " + diff);
 				
 				for( int i = 0; i < diff; i++ )
 				{
@@ -103,6 +101,10 @@ public class ExactRoomProvider implements IRoomProvider {
 	@Override
 	public boolean isOk() {
 		return isOk;
+	}
+
+	public int totalNeeded() {
+		return totalNeeded;
 	}
 	
 }
