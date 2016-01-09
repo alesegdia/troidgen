@@ -75,6 +75,7 @@ public class ExactRoomProvider implements IRoomProvider {
 				}				
 			}
 		}
+		Util.shuffle(retlist);
 		return retlist;
 	}
 
