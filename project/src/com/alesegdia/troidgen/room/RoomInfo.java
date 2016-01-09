@@ -15,7 +15,7 @@ public class RoomInfo {
 	public RestrictionSet passageNextRestriction;
 	public int constraintSolved;
 	public String id;
-	public int neededRooms = 2;
+	public int neededRooms = 5;
 	
 	@Override
 	public String toString()
