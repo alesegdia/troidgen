@@ -11,6 +11,7 @@ public class OverlapSolverConfig
 	public boolean enableRandomPushIfZero = true;
 	public boolean enableTweakNearSeparation = true;
 	public Rect enclosingRect = new Rect( -400, -400, 800, 800 );
+	public boolean earlyBreak = false;
 
 	public float enclosingLeft() {
 		return enclosingRect.position.x * resolution;

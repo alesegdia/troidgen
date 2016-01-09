@@ -82,8 +82,11 @@ public class OverlapSolver {
 						if( r1.position.x + r1.size.x > osc.enclosingRight() ) r1.position.x = osc.enclosingRight();
 						if( r1.position.y < osc.enclosingTop() ) r1.position.y = osc.enclosingTop();
 						if( r1.position.y + r1.size.y > osc.enclosingBottom() ) r1.position.y = osc.enclosingBottom();
-						// bad, ugly forms
-						//break;
+						
+						if( osc.earlyBreak )
+						{
+							break;
+						}
 					}
 				}
 			}
