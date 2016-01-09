@@ -30,6 +30,8 @@ public class OverlapSolver {
 			rr.size.y *= osc.resolution;
 		}
 		
+		rects.addAll(outputLayout);
+		
 		boolean overlap = true;
 		while( overlap )
 		{
