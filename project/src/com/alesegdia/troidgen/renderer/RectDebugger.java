@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import com.alesegdia.troidgen.restriction.RestrictionSet;
 import com.alesegdia.troidgen.room.Link;
 import com.alesegdia.troidgen.room.Room;
 import com.alesegdia.troidgen.util.Rect;
