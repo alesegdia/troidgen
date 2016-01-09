@@ -79,5 +79,23 @@ public class RestrictionSet {
 		}
 		return rs;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		RestrictionSet rs = (RestrictionSet)o;
+		if( rs.restrictions.length ==  this.restrictions.length )
+		{
+			for( int i = 0; i < rs.restrictions.length; i++ )
+			{
+				if( rs.restrictions[i] != this.restrictions[i] )
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 
 }
