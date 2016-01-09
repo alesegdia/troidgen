@@ -42,7 +42,7 @@ public class GroupExtractor {
 		for( Room inner_room : testRects )
 		{
 			// if it's not the same room, it is not assigned and it is touching the other room
-			if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) && r.getPossibleConnections(inner_room).size() > 0 )
+			if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) && r.getPossibleConnections(inner_room).size() > 0 && !inner_room.collideWith(r) )
 			{
 				// add this room to the current group
 				currentGroup.add(inner_room);
