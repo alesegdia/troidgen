@@ -9,6 +9,11 @@ public class GroupExtractor {
 	
 	public List<List<Room>> solve( List<Room> testRects )
 	{
+		return solve(testRects, null);
+	}
+	
+	public List<List<Room>> solve( List<Room> testRects, IRoomValidator rgv )
+	{
 		List<List<Room>> rectGroups = new LinkedList<List<Room>>();
 		List<Room> assignedRooms = new LinkedList<Room>();
 		
@@ -25,7 +30,7 @@ public class GroupExtractor {
 					currentGroup.add(outer_room);
 					assignedRooms.add(outer_room);
 					
-					collectConnected( testRects, assignedRooms, currentGroup, outer_room );
+					collectConnected( testRects, assignedRooms, currentGroup, outer_room, rgv );
 					
 					// add the group to the return list
 					rectGroups.add(currentGroup);
@@ -36,21 +41,24 @@ public class GroupExtractor {
 		return rectGroups;
 	}
 	
-	public void collectConnected(List<Room> testRects, List<Room> assignedRooms, List<Room> currentGroup, Room r)
+	public void collectConnected(List<Room> testRects, List<Room> assignedRooms, List<Room> currentGroup, Room r, IRoomValidator rgv)
 	{
 		// iterate over all rooms to check which ones are connected
 		for( Room inner_room : testRects )
 		{
-			// if it's not the same room, it is not assigned and it is touching the other room
-			if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) && r.getPossibleConnections(inner_room).size() > 0 && !inner_room.collideWith(r) )
+			if( rgv == null || rgv.validate(r) )
 			{
-				// add this room to the current group
-				currentGroup.add(inner_room);
+				// if it's not the same room, it is not assigned and it is touching the other room
+				if( r != inner_room && !assignedRooms.contains(inner_room) && r.isTouching(inner_room) && r.getPossibleConnections(inner_room).size() > 0 && !inner_room.collideWith(r) )
+				{
+					// add this room to the current group
+					currentGroup.add(inner_room);
+					
+					// this room now has this group, so it's marked as visited
+					assignedRooms.add(inner_room);
 				
-				// this room now has this group, so it's marked as visited
-				assignedRooms.add(inner_room);
-			
-				collectConnected( testRects, assignedRooms, currentGroup, inner_room );
+					collectConnected( testRects, assignedRooms, currentGroup, inner_room, rgv );
+				}
 			}
 		}
 	}
