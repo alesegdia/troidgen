@@ -14,6 +14,7 @@ public class Room extends Rect {
 	public List<Room> neighboors = new LinkedList<Room>();
 	public RoomType rtype;
 	public RoomInfo rinfo = null;
+	public boolean isVisited = false;
 	
 	public Room(RoomInfo rinfo)
 	{
