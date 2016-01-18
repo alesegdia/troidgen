@@ -15,6 +15,7 @@ public class Room extends Rect {
 	public RoomType rtype;
 	public RoomInfo rinfo = null;
 	public boolean isVisited = false;
+	public boolean opened = true;
 	
 	public Room(RoomInfo rinfo)
 	{
