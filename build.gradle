@@ -16,7 +16,7 @@ repositories {
 dependencies {
 }
 
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.java.srcDirs = [ "src/main/java" ]
 
 /*
 task dist(type: Jar) {
