@@ -7,22 +7,28 @@
  * user guide available at https://docs.gradle.org/2.10/userguide/tutorial_java_projects.html
  */
 
-apply plugin: 'java'
 
-repositories {
-    jcenter()
+
+
+apply plugin: "java"
+
+sourceCompatibility = 8
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+
+task run(dependsOn: classes, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    ignoreExitValue = true
 }
 
-dependencies {
-}
-
-sourceSets.main.java.srcDirs = [ "src/main/java" ]
-
-/*
 task dist(type: Jar) {
-    from files(sourceSets.main.output.classesDir)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from files(sourceSets.main.output.classesDirs)
     from files(sourceSets.main.output.resourcesDir)
-    from {configurations.compile.collect {zipTree(it)}}
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+
 }
-*/
+
+dist.dependsOn classes
 
